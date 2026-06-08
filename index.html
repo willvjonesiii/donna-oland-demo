@@ -6,6 +6,7 @@
   <title>Donna Oland — Where the Clinical Meets the Cosmic</title>
   <link rel="icon" type="image/png" href="https://designmywebsitenow.com/images/favicon-merkaba.png">
   <link rel="apple-touch-icon" href="https://designmywebsitenow.com/images/favicon-merkaba.png">
+  <link rel="preload" as="image" href="689836652_27202747779317805_921646299369259211_n.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1041,12 +1042,16 @@
       })();
     }
 
-    // ── HERO PORTAL — slow zoom on load ────────────────
+    // ── HERO PORTAL — living image (scale in + parallax) ─
     const heroPortal = document.getElementById('heroPortal');
     if (heroPortal) {
       const onLoad = () => requestAnimationFrame(() => heroPortal.classList.add('loaded'));
       heroPortal.addEventListener('load', onLoad);
       if (heroPortal.complete) onLoad();
+      window.addEventListener('scroll', () => {
+        const offset = Math.min(window.scrollY * 0.04, window.innerHeight * 0.055);
+        heroPortal.style.transform = `scale(1.06) translateY(-${offset}px) translateZ(0)`;
+      }, { passive: true });
     }
 
     // ── NAV SCROLL ──────────────────────────────────────
