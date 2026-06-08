@@ -230,23 +230,90 @@
       text-transform: uppercase; color: var(--cream-dim);
     }
 
-    /* Right panel — photo */
+    /* Right panel — moon portal */
     .hero-right {
-      position: relative; overflow: hidden;
+      position: relative;
+      background: var(--void);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
     }
-    .hero-right img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-    /* Subtle gradient fade from left so image bleeds into left panel seamlessly */
+    /* Subtle radial atmosphere behind the circle */
     .hero-right::before {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(to right, var(--forest) 0%, transparent 18%);
-      z-index: 1; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 70% at 50% 50%, rgba(20,35,25,0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(90,16,32,0.12) 0%, transparent 60%);
+      pointer-events: none; z-index: 0;
     }
+
+    .hero-portal-wrap {
+      position: relative; z-index: 1;
+      width: clamp(280px, min(40vw, 72vh), 580px);
+      aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Outer decorative ring */
+    .hero-portal-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -18px;
+      border-radius: 50%;
+      border: 1px solid rgba(139,26,48,0.22);
+      animation: portalPulse 4.5s ease-in-out infinite;
+    }
+    /* Second outer ring — larger, even fainter */
+    .hero-portal-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -36px;
+      border-radius: 50%;
+      border: 1px solid rgba(42,107,68,0.14);
+      animation: portalPulse 4.5s ease-in-out infinite 0.6s;
+    }
+
+    @keyframes portalPulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.012); }
+    }
+
+    /* The circle itself */
+    .hero-portal {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      box-shadow:
+        0 0 0 1px rgba(139,26,48,0.45),
+        0 0 50px 10px rgba(139,26,48,0.18),
+        0 0 110px 30px rgba(139,26,48,0.08),
+        inset 0 0 40px 8px rgba(7,10,7,0.5);
+      animation: glowPulse 4.5s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 0 1px rgba(139,26,48,0.4), 0 0 50px 10px rgba(139,26,48,0.14), 0 0 110px 30px rgba(139,26,48,0.06), inset 0 0 40px 8px rgba(7,10,7,0.5); }
+      50%       { box-shadow: 0 0 0 1px rgba(173,36,64,0.7), 0 0 70px 18px rgba(139,26,48,0.28), 0 0 150px 45px rgba(139,26,48,0.12), inset 0 0 40px 8px rgba(7,10,7,0.5); }
+    }
+
+    .hero-portal img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block;
+    }
+
+    /* Cardinal glyphs on the ring */
+    .portal-glyph {
+      position: absolute;
+      font-size: 0.55rem; color: rgba(139,26,48,0.6);
+      letter-spacing: 0.1em;
+      width: 14px; text-align: center;
+      animation: portalPulse 4.5s ease-in-out infinite;
+    }
+    .portal-n { top: -28px;  left: 50%; transform: translateX(-50%); }
+    .portal-s { bottom: -28px; left: 50%; transform: translateX(-50%); }
+    .portal-e { right: -28px; top: 50%; transform: translateY(-50%); }
+    .portal-w { left: -28px;  top: 50%; transform: translateY(-50%); }
 
     /* Mobile hero: stack */
     @media (max-width: 768px) {
@@ -255,11 +322,12 @@
         grid-template-rows: auto auto;
       }
       .hero-right {
-        height: 65vw; min-height: 300px; max-height: 480px;
+        min-height: 75vw;
         order: -1;
+        padding: 3rem 1.5rem;
       }
-      .hero-right::before {
-        background: linear-gradient(to bottom, transparent 60%, var(--forest) 100%);
+      .hero-portal-wrap {
+        width: clamp(220px, 64vw, 380px);
       }
       .hero-left::after { display: none; }
       .hero-left { padding-top: 2.5rem; }
@@ -661,14 +729,21 @@
       </div>
     </div>
 
-    <!-- Right: photo -->
+    <!-- Right: moon portal -->
     <div class="hero-right">
-      <img
-        src="689836652_27202747779317805_921646299369259211_n.jpg"
-        alt="Donna Oland"
-        id="heroImg"
-        fetchpriority="high"
-      >
+      <div class="hero-portal-wrap">
+        <div class="hero-portal">
+          <img
+            src="689836652_27202747779317805_921646299369259211_n.jpg"
+            alt="Donna Oland"
+            fetchpriority="high"
+          >
+        </div>
+        <span class="portal-glyph portal-n">✦</span>
+        <span class="portal-glyph portal-s">✦</span>
+        <span class="portal-glyph portal-e">✦</span>
+        <span class="portal-glyph portal-w">✦</span>
+      </div>
     </div>
   </section>
 
