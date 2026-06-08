@@ -145,20 +145,17 @@
     /* Left panel — text */
     .hero-left {
       position: relative;
-      background: var(--void);
+      /* Solid forest green fading to void at the right edge — seam disappears */
+      background: linear-gradient(to right,
+        #0c1a0f  0%,
+        #0c1a0f  70%,
+        rgba(12,26,15,0.55) 88%,
+        rgba(12,26,15,0)   100%
+      );
       display: flex; flex-direction: column; justify-content: center;
       padding: clamp(7rem, 10vw, 9rem) clamp(2rem, 5vw, 4.5rem) clamp(4rem, 6vw, 6rem);
       overflow: hidden;
       z-index: 1;
-    }
-    /* Forest glow behind text — gives warmth without a solid box */
-    .hero-left::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 110% 80% at 20% 50%, rgba(12,26,15,0.95) 0%, rgba(12,26,15,0.6) 50%, transparent 75%),
-        radial-gradient(ellipse 80% 60% at 100% 50%, rgba(139,26,48,0.08) 0%, transparent 60%);
-      pointer-events: none;
     }
 
     .hero-eyebrow {
