@@ -227,69 +227,56 @@
     }
 
     /* Right panel — scrying portal */
+    /* Vignette + glow + photo all as CSS background layers — most reliable approach */
     .hero-right {
       position: relative;
-      background: var(--void);
-      overflow: hidden;
-    }
-
-    /* Warm atmospheric glow — the "light within the mirror" */
-    .hero-right::before {
-      content: '';
-      position: absolute; inset: 0; z-index: 0;
-      background:
-        radial-gradient(ellipse 65% 72% at 50% 44%,
-          rgba(90,16,32,0.28) 0%,
-          rgba(42,107,68,0.08) 48%,
+      background-image:
+        /* Vignette: transparent oval at center, fades to void at edges */
+        radial-gradient(
+          ellipse 60% 70% at 58% 46%,
+          transparent         0%,
+          transparent        20%,
+          rgba(7,10,7,0.18)  36%,
+          rgba(7,10,7,0.55)  52%,
+          rgba(7,10,7,0.82)  66%,
+          rgba(7,10,7,0.96)  78%,
+          #070a07            90%
+        ),
+        /* Warm wine glow at center — light within the mirror */
+        radial-gradient(
+          ellipse 55% 60% at 58% 44%,
+          rgba(90,16,32,0.25) 0%,
+          rgba(42,107,68,0.06) 50%,
           transparent 70%
-        );
+        ),
+        /* The photo */
+        url('689836652_27202747779317805_921646299369259211_n.jpg');
+      background-size: cover, cover, cover;
+      background-position: center, center, center top;
+      background-repeat: no-repeat, no-repeat, no-repeat;
+      background-color: var(--void);
     }
 
-    /* Photo — fills the panel fully */
-    .hero-right img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center top;
-      display: block; z-index: 1;
-    }
-
-    /* Vignette — oval portal effect, center reveals Donna, edges dissolve to void */
-    .hero-right::after {
-      content: '';
-      position: absolute; inset: 0; z-index: 3;
-      pointer-events: none;
-      background: radial-gradient(
-        ellipse 62% 72% at 58% 46%,
-        transparent        0%,
-        transparent       22%,
-        rgba(7,10,7,0.20) 38%,
-        rgba(7,10,7,0.58) 54%,
-        rgba(7,10,7,0.84) 68%,
-        rgba(7,10,7,0.96) 80%,
-        #070a07           92%
-      );
-    }
-
-    /* Thin pulsing ring — suggests the portal boundary without boxing it */
+    /* Thin pulsing ring — portal boundary hint */
     .hero-ring {
       position: absolute;
-      inset: 4%; z-index: 2;
+      inset: 6%; z-index: 1;
       border-radius: 50%;
-      border: 1px solid rgba(139,26,48,0.22);
+      border: 1px solid rgba(139,26,48,0.2);
       pointer-events: none;
       animation: ringBreath 5s ease-in-out infinite;
     }
     .hero-ring::after {
       content: '';
       position: absolute;
-      inset: -14px;
+      inset: -16px;
       border-radius: 50%;
       border: 1px solid rgba(42,107,68,0.1);
       animation: ringBreath 5s ease-in-out infinite 1.4s;
     }
     @keyframes ringBreath {
-      0%, 100% { opacity: 0.35; transform: scale(1); }
-      50%       { opacity: 0.9;  transform: scale(1.008); }
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50%       { opacity: 0.85; transform: scale(1.008); }
     }
 
     /* Mobile: stack, photo above text */
@@ -698,11 +685,6 @@
 
     <!-- Right: scrying portal -->
     <div class="hero-right">
-      <img
-        src="689836652_27202747779317805_921646299369259211_n.jpg"
-        alt="Donna Oland"
-        fetchpriority="high"
-      >
       <div class="hero-ring"></div>
     </div>
 
