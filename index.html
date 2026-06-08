@@ -139,6 +139,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       min-height: 100dvh;
+      padding: 0; /* override general section padding */
     }
 
     /* Left panel — text */
@@ -252,18 +253,19 @@
       display: block; z-index: 1;
     }
 
-    /* Vignette overlay — transparent at center, fades to void at edges */
-    .hero-vignette {
+    /* Vignette — ::after sits above photo, transparent oval center fades to void at edges */
+    .hero-right::after {
+      content: '';
       position: absolute; inset: 0; z-index: 2;
       pointer-events: none;
       background: radial-gradient(
-        ellipse 84% 90% at 50% 44%,
+        ellipse 78% 86% at 50% 44%,
         transparent        0%,
-        transparent       38%,
-        rgba(7,10,7,0.12) 52%,
-        rgba(7,10,7,0.48) 64%,
-        rgba(7,10,7,0.80) 76%,
-        rgba(7,10,7,0.95) 87%,
+        transparent       36%,
+        rgba(7,10,7,0.10) 50%,
+        rgba(7,10,7,0.45) 62%,
+        rgba(7,10,7,0.78) 74%,
+        rgba(7,10,7,0.94) 85%,
         #070a07           100%
       );
     }
@@ -701,7 +703,6 @@
         alt="Donna Oland"
         fetchpriority="high"
       >
-      <div class="hero-vignette"></div>
       <div class="hero-ring"></div>
     </div>
 
