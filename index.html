@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donna Oland — Where the Clinical Meets the Cosmic</title>
+  <link rel="icon" type="image/png" href="merkaba-logo.png">
+  <link rel="apple-touch-icon" href="merkaba-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --void:       #090810;
+      --deep:       #120d22;
+      --mid:        #1e1535;
+      --amethyst:   #9b6bb5;
+      --moonstone:  #c8b8d8;
+      --amber:      #c49a52;
+      --cream:      #f0ece4;
+      --cream-dim:  rgba(240,236,228,0.72);
+      --hairline:   rgba(155,107,181,0.18);
+      --hairline-amber: rgba(196,154,82,0.22);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--void);
+      color: var(--cream);
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── CUSTOM CURSOR ─────────────────────────────────── */
+    @media (hover: none) {
+      body { cursor: auto; }
+      .cursor, .cursor-ring { display: none; }
+    }
+    .cursor {
+      position: fixed; top: 0; left: 0;
+      width: 8px; height: 8px;
+      background: var(--amethyst);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: background 0.2s;
+    }
+    .cursor-ring {
+      position: fixed; top: 0; left: 0;
+      width: 32px; height: 32px;
+      border: 1px solid rgba(155,107,181,0.55);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.12s ease, width 0.2s, height 0.2s, border-color 0.2s;
+    }
+    a:hover ~ .cursor-ring, button:hover ~ .cursor-ring { width: 44px; height: 44px; border-color: var(--amethyst); }
+
+    /* ── NAV ───────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem clamp(1.5rem, 5vw, 4rem);
+      transition: background 0.4s, backdrop-filter 0.4s, border-bottom 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(9,8,16,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .nav-left { display: flex; flex-direction: column; gap: 0.15rem; }
+    .nav-brand {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.85rem, 1.5vw, 1rem);
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+    }
+    .nav-sub {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amethyst);
+    }
+    .nav-right { display: flex; align-items: center; gap: 2.2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--moonstone); }
+    .nav-cta {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--void);
+      background: var(--amethyst);
+      border: none;
+      padding: 0.6rem 1.4rem;
+      cursor: none;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--moonstone); }
+    .nav-toggle {
+      display: none;
+      flex-direction: column; gap: 5px;
+      background: none; border: none; outline: none;
+      -webkit-appearance: none; appearance: none;
+      cursor: none; padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; width: 24px; height: 1px;
+      background: var(--cream); transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(9,8,16,0.97);
+      backdrop-filter: blur(20px);
+      z-index: 99;
+      flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--cream);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--amethyst); }
+    .mobile-close {
+      position: absolute; top: 1.5rem; right: 2rem;
+      background: none; border: none; color: var(--cream);
+      font-size: 1.8rem; cursor: none; -webkit-appearance: none; appearance: none;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100dvh;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+    }
+    .hero-bg img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.08) translateZ(0);
+      will-change: transform;
+      transition: transform 8s ease;
+    }
+    .hero-bg img.loaded { transform: scale(1.06) translateZ(0); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(9,8,16,0.88) 0%,
+        rgba(18,13,34,0.82) 40%,
+        rgba(30,21,53,0.65) 70%,
+        rgba(9,8,16,0.78) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 6vw, 6rem);
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--amethyst);
+      margin-bottom: 1.6rem;
+    }
+    .hero-eyebrow span {
+      display: inline-block;
+      width: 32px; height: 1px;
+      background: var(--amethyst);
+      vertical-align: middle;
+      margin: 0 0.8rem;
+    }
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-weight: 600;
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 1.6rem;
+      letter-spacing: 0.02em;
+    }
+    .hero-title em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--amethyst);
+      font-size: 1.12em;
+    }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      color: var(--moonstone);
+      margin-bottom: 2.8rem;
+      max-width: 560px;
+      line-height: 1.5;
+    }
+    .hero-ctas { display: flex; gap: 1.2rem; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--void);
+      background: var(--amethyst);
+      padding: 0.85rem 2rem;
+      text-decoration: none;
+      white-space: nowrap; flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--moonstone); }
+    .btn-ghost {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--moonstone);
+      border: 1px solid rgba(200,184,216,0.4);
+      padding: 0.85rem 2rem;
+      text-decoration: none;
+      white-space: nowrap; flex-shrink: 0;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--moonstone); color: var(--cream); }
+
+    /* Credentials strip */
+    .hero-creds {
+      position: absolute; bottom: 3rem; left: clamp(1.5rem, 6vw, 6rem);
+      display: flex; gap: 2rem; flex-wrap: wrap;
+      z-index: 2;
+    }
+    .cred-item {
+      display: flex; flex-direction: column; gap: 0.2rem;
+    }
+    .cred-num {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 600;
+      color: var(--amethyst);
+      line-height: 1;
+    }
+    .cred-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+    }
+    .cred-divider {
+      width: 1px;
+      background: var(--hairline);
+      align-self: stretch;
+    }
+
+    /* ── MARQUEE ─────────────────────────────────────── */
+    .marquee-band {
+      background: var(--mid);
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+      padding: 1rem 0;
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 28s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--moonstone);
+      white-space: nowrap;
+      padding: 0 2.2rem;
+    }
+    .marquee-item.accent { color: var(--amethyst); }
+
+    /* ── SECTION BASE ────────────────────────────────── */
+    section { padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem); }
+
+    .section-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amethyst);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--cream);
+      margin-bottom: 1.6rem;
+    }
+    .section-title em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--amethyst);
+      font-size: 1.08em;
+    }
+
+    /* ── ABOUT / MEET DONNA ──────────────────────────── */
+    .about { background: var(--deep); }
+    .about-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: center;
+    }
+    .about-photo-wrap {
+      position: relative;
+    }
+    .about-photo-placeholder {
+      aspect-ratio: 3/4;
+      background: var(--mid);
+      border: 1px solid var(--hairline);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 1rem;
+      text-align: center; padding: 2rem;
+    }
+    .about-photo-placeholder .placeholder-icon {
+      font-size: 2rem; color: var(--amethyst); opacity: 0.4;
+    }
+    .about-photo-placeholder .placeholder-text {
+      font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--amethyst);
+      line-height: 1.8;
+    }
+    .about-photo-flag {
+      position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%);
+      background: var(--amethyst);
+      color: var(--void);
+      font-size: 0.58rem; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 0.4rem 1rem;
+      white-space: nowrap;
+    }
+    .about-photo-accent {
+      position: absolute; top: -1.5rem; right: -1.5rem;
+      width: 100px; height: 100px;
+      border: 1px solid var(--hairline);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .about-text-block { display: flex; flex-direction: column; gap: 1.6rem; }
+    .about-pullquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+      color: var(--moonstone);
+      line-height: 1.4;
+      border-left: 2px solid var(--amethyst);
+      padding-left: 1.6rem;
+    }
+    .about-body {
+      font-size: 0.95rem;
+      color: var(--cream-dim);
+      line-height: 1.85;
+    }
+    .about-credentials {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: 0.6rem;
+    }
+    .cred-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amethyst);
+      border: 1px solid rgba(155,107,181,0.3);
+      padding: 0.35rem 0.85rem;
+    }
+
+    /* ── PHILOSOPHY / THE PRACTICE ───────────────────── */
+    .philosophy {
+      background: var(--void);
+      position: relative; overflow: hidden;
+    }
+    .philosophy::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(30,21,53,0.6) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .philosophy-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+      position: relative; z-index: 1;
+    }
+    .philosophy-left {}
+    .philosophy-right {
+      display: flex; flex-direction: column; gap: 2.4rem;
+    }
+    .philosophy-body {
+      font-size: 0.95rem;
+      color: var(--cream-dim);
+      line-height: 1.85;
+      margin-top: 1.2rem;
+    }
+    .resonance-block {
+      border: 1px solid var(--hairline-amber);
+      padding: 2rem;
+      position: relative;
+    }
+    .resonance-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.8rem;
+    }
+    .resonance-freq {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      color: var(--amber);
+      font-weight: 600;
+      line-height: 1;
+    }
+    .resonance-desc {
+      font-size: 0.85rem;
+      color: var(--cream-dim);
+      margin-top: 0.8rem;
+      line-height: 1.7;
+    }
+    .pillars-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+    }
+    .pillar-item {
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .pillar-glyph {
+      font-size: 1rem; color: var(--amethyst);
+    }
+    .pillar-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .pillar-desc {
+      font-size: 0.8rem;
+      color: var(--cream-dim);
+      line-height: 1.6;
+    }
+
+    /* ── OFFERINGS ───────────────────────────────────── */
+    .offerings { background: var(--deep); }
+    .offerings-inner { max-width: 1200px; margin: 0 auto; }
+    .offerings-header { margin-bottom: 3.5rem; }
+    .offerings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+    }
+    .offering-card {
+      position: relative;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      aspect-ratio: 4/5;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      cursor: none;
+    }
+    .offering-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(9,8,16,0.94) 0%, rgba(18,13,34,0.65) 55%, rgba(9,8,16,0.3) 100%);
+      transition: background 0.4s;
+    }
+    .offering-card:hover .offering-overlay {
+      background: linear-gradient(to top, rgba(9,8,16,0.96) 0%, rgba(30,21,53,0.78) 55%, rgba(9,8,16,0.4) 100%);
+    }
+    .offering-body {
+      position: relative; z-index: 1;
+      padding: 1.8rem 1.6rem;
+    }
+    .offering-num {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--amethyst);
+      margin-bottom: 0.6rem;
+    }
+    .offering-name {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .offering-desc {
+      font-size: 0.8rem;
+      color: var(--cream-dim);
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.4s;
+      opacity: 0;
+    }
+    .offering-card:hover .offering-desc {
+      max-height: 100px;
+      opacity: 1;
+    }
+    .offering-line {
+      width: 28px; height: 1px;
+      background: var(--amethyst);
+      margin-top: 0.8rem;
+      transition: width 0.4s;
+    }
+    .offering-card:hover .offering-line { width: 50px; }
+
+    /* ── TESTIMONIALS ────────────────────────────────── */
+    .testimonials { background: var(--mid); }
+    .testimonials-inner { max-width: 900px; margin: 0 auto; }
+    .testimonials-header { margin-bottom: 3rem; }
+    .placeholder-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.6rem; letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: rgba(155,107,181,0.12);
+      border: 1px solid rgba(155,107,181,0.35);
+      color: var(--amethyst);
+      padding: 0.4rem 0.9rem;
+      margin-bottom: 2rem;
+    }
+    .accordion-item {
+      border-bottom: 1px solid var(--hairline);
+    }
+    .accordion-trigger {
+      width: 100%;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 1.6rem 0;
+      background: none; border: none;
+      cursor: none; text-align: left; gap: 1rem;
+    }
+    .accordion-trigger-left {
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .accordion-attribution {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .accordion-snippet {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--moonstone);
+      line-height: 1.4;
+    }
+    .accordion-icon {
+      font-size: 1.2rem;
+      color: var(--amethyst);
+      flex-shrink: 0;
+      transition: transform 0.3s;
+      line-height: 1;
+      margin-top: 0.1rem;
+    }
+    .accordion-item.open .accordion-icon { transform: rotate(45deg); }
+    .accordion-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.45s ease;
+    }
+    .accordion-item.open .accordion-body { max-height: 300px; }
+    .accordion-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: var(--moonstone);
+      line-height: 1.6;
+      padding-bottom: 2rem;
+      padding-right: 3rem;
+    }
+
+    /* ── CTA BAND ────────────────────────────────────── */
+    .cta-band {
+      background: var(--void);
+      position: relative; overflow: hidden;
+      text-align: center;
+      padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(30,21,53,0.7) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-band-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .cta-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amethyst);
+      margin-bottom: 1.4rem;
+    }
+    .cta-headline {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .cta-headline em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--amethyst);
+      font-size: 1.1em;
+    }
+    .cta-sub {
+      font-size: 0.9rem;
+      color: var(--cream-dim);
+      margin-bottom: 2.6rem;
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+    footer {
+      background: var(--deep);
+      border-radius: 3rem 3rem 0 0;
+      padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem) 2.5rem;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 0.8rem; }
+    .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.18em;
+      color: var(--cream);
+    }
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--amethyst);
+    }
+    .footer-desc {
+      font-size: 0.82rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      margin-top: 0.4rem;
+    }
+    .footer-col-title {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amethyst);
+      margin-bottom: 1.2rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--cream-dim);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--moonstone); }
+    .footer-bottom {
+      max-width: 1200px; margin: 2rem auto 0;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(240,236,228,0.35);
+    }
+    .footer-glyph {
+      font-size: 0.75rem;
+      color: var(--amethyst);
+      letter-spacing: 0.3em;
+    }
+
+    /* ── SCROLL REVEAL ───────────────────────────────── */
+    .rv { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .rv.visible { opacity: 1; transform: none; }
+    .rv-delay-1 { transition-delay: 0.12s; }
+    .rv-delay-2 { transition-delay: 0.24s; }
+    .rv-delay-3 { transition-delay: 0.36s; }
+    .rv-delay-4 { transition-delay: 0.48s; }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-toggle { display: flex; }
+
+      .about-inner { grid-template-columns: 1fr; }
+      .about-photo-wrap { max-width: 400px; margin: 0 auto; }
+
+      .philosophy-inner { grid-template-columns: 1fr; }
+
+      .offerings-grid { grid-template-columns: 1fr 1fr; }
+      .offering-desc { max-height: 80px; opacity: 1; }
+
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+
+      .hero-creds {
+        position: static;
+        margin-top: 3rem;
+        padding: 0 clamp(1.5rem, 6vw, 6rem);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .offerings-grid { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .hero-creds { gap: 1.2rem; }
+      .cred-divider { width: 24px; height: 1px; align-self: auto; margin: auto 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">✕</button>
+    <a href="#about">About</a>
+    <a href="#practice">The Practice</a>
+    <a href="#offerings">Offerings</a>
+    <a href="#testimonials">Stories</a>
+    <a href="#contact" style="color:var(--amethyst)">Book a Session</a>
+  </div>
+
+  <!-- NAV -->
+  <nav id="mainNav">
+    <div class="nav-left">
+      <a href="#" class="nav-brand">Donna Oland</a>
+      <span class="nav-sub">Reiki Master · Energy Healer</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#practice">The Practice</a></li>
+        <li><a href="#offerings">Offerings</a></li>
+        <li><a href="#testimonials">Stories</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Book a Session</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img
+        src="https://images.unsplash.com/photo-1630908318796-5998f64b07cf?q=80&w=1920&auto=format&fit=crop"
+        alt="Crystal healing stones"
+        id="heroImg"
+        fetchpriority="high"
+      >
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow rv visible">
+        <span></span>
+        30 Years of Clinical Care · A Lifetime of Sacred Craft
+        <span></span>
+      </div>
+      <h1 class="hero-title rv visible">
+        Nurse.<br>Witch.<br><em>Healer.</em>
+      </h1>
+      <p class="hero-tagline rv visible">
+        Where the Clinical Meets the Cosmic.
+      </p>
+      <div class="hero-ctas rv visible">
+        <a href="#contact" class="btn-primary">Book a Session</a>
+        <a href="#about" class="btn-ghost">Meet Donna</a>
+      </div>
+    </div>
+
+    <div class="hero-creds">
+      <div class="cred-item rv visible">
+        <span class="cred-num">30</span>
+        <span class="cred-label">Years as an RN</span>
+      </div>
+      <div class="cred-divider rv visible"></div>
+      <div class="cred-item rv visible">
+        <span class="cred-num">III</span>
+        <span class="cred-label">Usui Reiki Master</span>
+      </div>
+      <div class="cred-divider rv visible"></div>
+      <div class="cred-item rv visible">
+        <span class="cred-num">6+</span>
+        <span class="cred-label">Healing Modalities</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-band">
+    <div class="marquee-track">
+      <span class="marquee-item">Crystal Reiki</span>
+      <span class="marquee-item accent">✦</span>
+      <span class="marquee-item">Usui Reiki I · II · III</span>
+      <span class="marquee-item accent">✦</span>
+      <span class="marquee-item">Sound Healing</span>
+      <span class="marquee-item accent">✦</span>
+      <span class="marquee-item">Aromatherapy</span>
+      <span class="marquee-item accent">✦</span>
+      <span class="marquee-item">Chakra Balancing</span>
+      <span class="marquee-item accent">✦</span>
+      <span class="marquee-item">Schumann Resonance</span>
+      <span class="marquee-item accent">✦</span>
+      <span class="marquee-item">Metaphysical Healing</span>
+      <span class="marquee-item accent">✦</span>
+      <span class="marquee-item">Crystal Reiki</span>
+      <span class="marquee-item accent">✦</span>
+      <span class="marquee-item">Usui Reiki I · II · III</span>
+      <span class="marquee-item accent">✦</span>
+      <span class="marquee-item">Sound Healing</span>
+      <span class="marquee-item accent">✦</span>
+      <span class="marquee-item">Aromatherapy</span>
+      <span class="marquee-item accent">✦</span>
+      <span class="marquee-item">Chakra Balancing</span>
+      <span class="marquee-item accent">✦</span>
+      <span class="marquee-item">Schumann Resonance</span>
+      <span class="marquee-item accent">✦</span>
+      <span class="marquee-item">Metaphysical Healing</span>
+      <span class="marquee-item accent">✦</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <div class="about-photo-wrap rv">
+        <div class="about-photo-placeholder">
+          <div class="placeholder-icon">✦</div>
+          <div class="placeholder-text">
+            Donna's Portrait<br>
+            — Replace with real photo —<br>
+            Full-body or editorial crop<br>
+            Vertical orientation preferred
+          </div>
+        </div>
+        <div class="about-photo-flag">⬡ Swap with founder photo</div>
+        <div class="about-photo-accent"></div>
+      </div>
+
+      <div class="about-text-block">
+        <div class="rv">
+          <div class="section-eyebrow">Meet Donna</div>
+          <h2 class="section-title">Three Decades of Healing.<br><em>Every Dimension of You.</em></h2>
+        </div>
+        <blockquote class="about-pullquote rv rv-delay-1">
+          "The body doesn't end where science stops measuring."
+        </blockquote>
+        <p class="about-body rv rv-delay-2">
+          For thirty years, Donna Oland worked as a Registered Nurse — watching, listening, and learning the intricate language of the human body. She understood anatomy the way few do: not just from textbooks, but from thousands of hours at the bedside, where she witnessed the limits of clinical medicine and the power of something more.
+        </p>
+        <p class="about-body rv rv-delay-2">
+          That something more led her to Usui Reiki — earning her Level I, II, and Master certifications — and then to Crystal Reiki through the Centre of Excellence. Today, Donna weaves together modalities that span the physical, mental, metaphysical, and environmental: aromatherapy, sound healing, chakra work across all nine energy centers, and an attunement to the Schumann Resonance — Earth's own electromagnetic heartbeat.
+        </p>
+        <p class="about-body rv rv-delay-3">
+          She is, in her own words, a witch. Not in the Hollywood sense — but in the oldest, most reverent meaning: a woman who holds knowledge, honors nature, and heals with intention. Her clients are women who have tried everything else and are finally ready to try the truth.
+        </p>
+        <div class="about-credentials rv rv-delay-3">
+          <span class="cred-tag">RN · 30 Years</span>
+          <span class="cred-tag">Usui Reiki Master</span>
+          <span class="cred-tag">Crystal Reiki · COE</span>
+          <span class="cred-tag">Sound Healer</span>
+          <span class="cred-tag">Aromatherapist</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PRACTICE -->
+  <section class="philosophy" id="practice">
+    <div class="philosophy-inner">
+      <div class="philosophy-left">
+        <div class="rv">
+          <div class="section-eyebrow">The Practice</div>
+          <h2 class="section-title">Healing Across Every<br><em>Dimension</em></h2>
+        </div>
+        <p class="philosophy-body rv rv-delay-1">
+          True healing isn't a single modality — it's a conversation between every layer of who you are. Donna's approach addresses the body you can see, the energy you can feel, and the environment that shapes both.
+        </p>
+        <p class="philosophy-body rv rv-delay-2">
+          Physical. Mental. Emotional. Metaphysical. Environmental. Donna works across all five — because an imbalance in one always speaks into the others.
+        </p>
+        <div class="pillars-grid rv rv-delay-3" style="margin-top:2rem">
+          <div class="pillar-item">
+            <span class="pillar-glyph">✦</span>
+            <span class="pillar-name">Physical</span>
+            <span class="pillar-desc">The body holds every experience. We begin there.</span>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-glyph">◈</span>
+            <span class="pillar-name">Mental</span>
+            <span class="pillar-desc">Releasing the loops that no longer serve.</span>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-glyph">∞</span>
+            <span class="pillar-name">Metaphysical</span>
+            <span class="pillar-desc">Energy work beyond what the eye can see.</span>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-glyph">⬡</span>
+            <span class="pillar-name">Environmental</span>
+            <span class="pillar-desc">Your space holds energy. So does the Earth.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="philosophy-right">
+        <div class="resonance-block rv">
+          <div class="resonance-label">Schumann Resonance</div>
+          <div class="resonance-freq">7.83 Hz</div>
+          <p class="resonance-desc">
+            The Earth's own electromagnetic pulse — the frequency of life itself. Donna incorporates attunement to this fundamental resonance, helping the body remember its most natural state of balance. Science calls it a geomagnetic phenomenon. Healers call it coming home.
+          </p>
+        </div>
+
+        <div class="rv rv-delay-1" style="border:1px solid var(--hairline); padding:2rem;">
+          <div class="resonance-label">Nine Chakra System</div>
+          <p class="resonance-desc">
+            Where most practitioners work the primary seven, Donna works all nine — including the Soul Star and Earth Star chakras that extend above and below the physical body, anchoring you between cosmos and earth.
+          </p>
+        </div>
+
+        <div class="rv rv-delay-2" style="border:1px solid var(--hairline-amber); padding:2rem;">
+          <div class="resonance-label" style="color:var(--amber)">Crystals</div>
+          <p class="resonance-desc">
+            Each stone carries its own frequency. Donna sources and works with crystals as amplifiers — placed on the body, held in intention, and used to direct energy with precision born from years of both scientific and sacred training.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFERINGS -->
+  <section class="offerings" id="offerings">
+    <div class="offerings-inner">
+      <div class="offerings-header">
+        <div class="section-eyebrow rv">Sacred Offerings</div>
+        <h2 class="section-title rv rv-delay-1">Every Path to <em>Wholeness</em></h2>
+      </div>
+
+      <div class="offerings-grid">
+
+        <div class="offering-card rv"
+          style="background-image:url('https://images.unsplash.com/photo-1630908318796-5998f64b07cf?q=80&w=800&auto=format&fit=crop')">
+          <div class="offering-overlay"></div>
+          <div class="offering-body">
+            <div class="offering-num">01</div>
+            <div class="offering-name">Crystal Reiki</div>
+            <div class="offering-desc">Certified through the Centre of Excellence. Crystals are placed with precision on and around the body to amplify energy flow, clear blockages, and restore vibrational alignment.</div>
+            <div class="offering-line"></div>
+          </div>
+        </div>
+
+        <div class="offering-card rv rv-delay-1"
+          style="background-image:url('https://images.unsplash.com/photo-1562026700-3425431ecb5b?q=80&w=800&auto=format&fit=crop')">
+          <div class="offering-overlay"></div>
+          <div class="offering-body">
+            <div class="offering-num">02</div>
+            <div class="offering-name">Usui Reiki</div>
+            <div class="offering-desc">Traditional Usui Reiki in the lineage of Mikao Usui. Donna holds her Level I, II, and Master certifications — bringing thirty years of bodily intuition into every session.</div>
+            <div class="offering-line"></div>
+          </div>
+        </div>
+
+        <div class="offering-card rv rv-delay-2"
+          style="background-image:url('https://plus.unsplash.com/premium_photo-1689254722721-2a052f9793ab?q=80&w=800&auto=format&fit=crop')">
+          <div class="offering-overlay"></div>
+          <div class="offering-body">
+            <div class="offering-num">03</div>
+            <div class="offering-name">Sound Healing</div>
+            <div class="offering-desc">Vibration is medicine. Using tonal instruments and intentional frequencies, sound healing works at a cellular level — reaching where hands cannot. Certification in progress.</div>
+            <div class="offering-line"></div>
+          </div>
+        </div>
+
+        <div class="offering-card rv"
+          style="background-image:url('https://images.unsplash.com/photo-1551621962-b8f40dee2f2c?q=80&w=800&auto=format&fit=crop')">
+          <div class="offering-overlay"></div>
+          <div class="offering-body">
+            <div class="offering-num">04</div>
+            <div class="offering-name">Aromatherapy</div>
+            <div class="offering-desc">Essential oils drawn from the Earth's own pharmacy. Donna uses therapeutic-grade aromatherapy to support emotional release, nervous system regulation, and energetic clearing.</div>
+            <div class="offering-line"></div>
+          </div>
+        </div>
+
+        <div class="offering-card rv rv-delay-1"
+          style="background-image:url('https://images.unsplash.com/photo-1585860095562-08f80ef43d43?q=80&w=800&auto=format&fit=crop')">
+          <div class="offering-overlay"></div>
+          <div class="offering-body">
+            <div class="offering-num">05</div>
+            <div class="offering-name">Chakra Balancing</div>
+            <div class="offering-desc">Working all nine energy centers — including the Soul Star and Earth Star — Donna maps the full spectrum of your energetic body and restores coherence from root to crown and beyond.</div>
+            <div class="offering-line"></div>
+          </div>
+        </div>
+
+        <div class="offering-card rv rv-delay-2"
+          style="background-image:url('https://images.unsplash.com/photo-1605552981700-68484762d021?q=80&w=800&auto=format&fit=crop')">
+          <div class="offering-overlay"></div>
+          <div class="offering-body">
+            <div class="offering-num">06</div>
+            <div class="offering-name">Metaphysical Consultation</div>
+            <div class="offering-desc">For those navigating the unseen. A dedicated session exploring the environmental, spiritual, and metaphysical dimensions affecting your wellbeing — guided by Donna's thirty years of clinical observation and sacred study.</div>
+            <div class="offering-line"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="testimonials-inner">
+      <div class="testimonials-header">
+        <div class="section-eyebrow rv">Client Stories</div>
+        <h2 class="section-title rv rv-delay-1">What Healing <em>Feels Like</em></h2>
+      </div>
+
+      <div class="placeholder-badge rv">⬡ Placeholder reviews — replace with real client testimonials</div>
+
+      <div class="rv rv-delay-1">
+
+        <div class="accordion-item open">
+          <button class="accordion-trigger">
+            <div class="accordion-trigger-left">
+              <span class="accordion-attribution">Michelle R.</span>
+              <span class="accordion-snippet">"I've never felt anything like it. It was like thirty years of weight just..."</span>
+            </div>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p class="accordion-quote">"I've never felt anything like it. It was like thirty years of weight just left my body in one hour. Donna has this way of knowing exactly where you're holding everything — the nurse in her sees the body, but the healer in her sees so much more. I came in skeptical and left in tears — the good kind."</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <div class="accordion-trigger-left">
+              <span class="accordion-attribution">Tanya W.</span>
+              <span class="accordion-snippet">"The crystal work was unlike anything I've experienced at an expo or..."</span>
+            </div>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p class="accordion-quote">"The crystal work was unlike anything I've experienced at an expo or in a class. Donna places each stone with such intention — you can actually feel the shift happening in real time. She explained everything in a way that made sense both scientifically and spiritually. I've been back four times."</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <div class="accordion-trigger-left">
+              <span class="accordion-attribution">Priya S.</span>
+              <span class="accordion-snippet">"I was drawn to her at the expo because she carried herself differently..."</span>
+            </div>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p class="accordion-quote">"I was drawn to her at the expo because she carried herself differently — like someone who has actually lived what she teaches. The Schumann Resonance work opened something in me I didn't even know needed opening. My sleep has completely changed. My anxiety has changed. Donna doesn't just heal the symptom."</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND + CONTACT -->
+  <section class="cta-band" id="contact">
+    <div class="cta-band-inner">
+      <div class="cta-eyebrow rv">Begin</div>
+      <h2 class="cta-headline rv rv-delay-1">
+        Your Body Has Been<br><em>Waiting</em> for This.
+      </h2>
+      <p class="cta-sub rv rv-delay-2">
+        Whether you find Donna at a metaphysical expo or reach out directly — every session begins the same way: with her full attention, thirty years of clinical knowledge, and a sacred commitment to your wholeness.
+      </p>
+      <div class="rv rv-delay-3" style="display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;">
+        <a href="mailto:hello@donnaoland.com" class="btn-primary">Book a Session</a>
+        <a href="#about" class="btn-ghost">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">Donna Oland</span>
+        <span class="footer-tagline">Where the Clinical Meets the Cosmic</span>
+        <p class="footer-desc">Reiki Master · Energy Healer · Registered Nurse<br>Crystal Reiki · Sound Healing · Aromatherapy</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Donna</a></li>
+          <li><a href="#practice">The Practice</a></li>
+          <li><a href="#offerings">Offerings</a></li>
+          <li><a href="#testimonials">Stories</a></li>
+          <li><a href="#contact">Book a Session</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Modalities</div>
+        <ul class="footer-links">
+          <li><a href="#offerings">Crystal Reiki</a></li>
+          <li><a href="#offerings">Usui Reiki</a></li>
+          <li><a href="#offerings">Sound Healing</a></li>
+          <li><a href="#offerings">Aromatherapy</a></li>
+          <li><a href="#offerings">Chakra Balancing</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Donna Oland. All rights reserved.</span>
+      <span class="footer-glyph">✦ · ✦ · ✦</span>
+    </div>
+  </footer>
+
+  <script>
+    // ── CURSOR ─────────────────────────────────────────
+    if (!window.matchMedia('(hover: none)').matches) {
+      const cur = document.getElementById('cursor');
+      const ring = document.getElementById('cursorRing');
+      let rx = 0, ry = 0, mx = 0, my = 0;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
+      function animRing() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+        requestAnimationFrame(animRing);
+      }
+      animRing();
+    }
+
+    // ── NAV SCROLL ─────────────────────────────────────
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ── MOBILE MENU ────────────────────────────────────
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.add('open');
+    });
+    document.getElementById('mobileClose').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.remove('open');
+    });
+    document.querySelectorAll('.mobile-menu a').forEach(a => {
+      a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+    });
+
+    // ── HERO PARALLAX ──────────────────────────────────
+    const heroImg = document.getElementById('heroImg');
+    heroImg.addEventListener('load', () => requestAnimationFrame(() => heroImg.classList.add('loaded')));
+    if (heroImg.complete) requestAnimationFrame(() => heroImg.classList.add('loaded'));
+    window.addEventListener('scroll', () => {
+      const offset = Math.min(window.scrollY * 0.04, window.innerHeight * 0.055);
+      heroImg.style.transform = `scale(1.06) translateY(-${offset}px) translateZ(0)`;
+    }, { passive: true });
+
+    // ── SCROLL REVEAL ──────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('js-loaded');
+    });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+    // ── ACCORDION ──────────────────────────────────────
+    document.querySelectorAll('.accordion-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.accordion-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>
+```
