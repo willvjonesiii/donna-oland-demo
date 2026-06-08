@@ -250,10 +250,23 @@
         ),
         /* The photo */
         url('689836652_27202747779317805_921646299369259211_n.jpg');
-      background-size: cover, cover, cover;
+      background-size: 100% 100%, 100% 100%, 108%;
       background-position: center, center, center top;
       background-repeat: no-repeat, no-repeat, no-repeat;
       background-color: #070a07;
+      animation: portalBreathe 7s ease-in-out infinite;
+      will-change: background-size, opacity;
+    }
+
+    @keyframes portalBreathe {
+      0%, 100% {
+        background-size: 100% 100%, 100% 100%, 108%;
+        opacity: 0.82;
+      }
+      50% {
+        background-size: 100% 100%, 100% 100%, 118%;
+        opacity: 1;
+      }
     }
 
     /* Thin pulsing ring — portal boundary hint */
