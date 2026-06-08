@@ -253,20 +253,20 @@
       display: block; z-index: 1;
     }
 
-    /* Vignette — ::after sits above photo, transparent oval center fades to void at edges */
+    /* Vignette — oval portal effect, center reveals Donna, edges dissolve to void */
     .hero-right::after {
       content: '';
-      position: absolute; inset: 0; z-index: 2;
+      position: absolute; inset: 0; z-index: 3;
       pointer-events: none;
       background: radial-gradient(
-        ellipse 78% 86% at 50% 44%,
+        ellipse 62% 72% at 58% 46%,
         transparent        0%,
-        transparent       36%,
-        rgba(7,10,7,0.10) 50%,
-        rgba(7,10,7,0.45) 62%,
-        rgba(7,10,7,0.78) 74%,
-        rgba(7,10,7,0.94) 85%,
-        #070a07           100%
+        transparent       22%,
+        rgba(7,10,7,0.20) 38%,
+        rgba(7,10,7,0.58) 54%,
+        rgba(7,10,7,0.84) 68%,
+        rgba(7,10,7,0.96) 80%,
+        #070a07           92%
       );
     }
 
