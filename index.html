@@ -294,28 +294,31 @@
       .hero-right { min-height: 80vw; order: -1; }
       .hero-left { padding-top: 2.5rem; }
 
-      /* The portrait has almost no headroom above her hair, so a full-bleed
-         crop pins her crown to the very top edge. Instead, drop the photo so
-         the top of her head begins ~27.5% down, letting the dark hero ground
-         fill the space above (where the nav sits). */
-      .hero-right img {
-        top: 27.5%; height: auto; bottom: 0;
-        object-position: center 18%;
+      /* Drop the photo down within the hero so her crown begins at the line.
+         The photo has only ~8% headroom above her head — full-bleed cover can't
+         lower her crown enough, so we shift the image down and let the dark hero
+         background fill above. top/height (not transform) so the parallax JS,
+         which only sets transform, won't undo it. */
+      #heroPortal {
+        top: 27.5% !important; bottom: 0 !important;
+        height: auto !important;
+        object-position: center 18% !important;
       }
 
       /* Soft top feather — her hair emerges from the dark, no hard photo edge */
       .hero-right::after {
         content: '';
         position: absolute; top: 27.5%; left: 0; right: 0;
-        height: 12%; z-index: 3; pointer-events: none;
+        height: 12%; z-index: 2; pointer-events: none;
         background: linear-gradient(to bottom, #070a07 0%, transparent 100%);
       }
 
-      /* Soft bottom bleed into the text panel — no hard line */
+      /* Soft bottom bleed into the text panel — no hard line.
+         Kept short so her full face clears the gradient. */
       .hero-right::before {
         content: '';
         position: absolute; bottom: 0; left: 0; right: 0;
-        height: 45%; z-index: 3; pointer-events: none;
+        height: 22%; z-index: 3; pointer-events: none;
         background: linear-gradient(to bottom, transparent 0%, #0c1a0f 100%);
       }
     }
