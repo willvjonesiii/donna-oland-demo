@@ -293,6 +293,17 @@
       .hero { grid-template-columns: 1fr; }
       .hero-right { min-height: 80vw; order: -1; }
       .hero-left { padding-top: 2.5rem; }
+
+      /* Shift her face down in the frame on mobile */
+      .hero-right img { object-position: center 35%; }
+
+      /* Soft bottom bleed into the text panel — no hard line */
+      .hero-right::before {
+        content: '';
+        position: absolute; bottom: 0; left: 0; right: 0;
+        height: 45%; z-index: 3; pointer-events: none;
+        background: linear-gradient(to bottom, transparent 0%, #0c1a0f 100%);
+      }
     }
 
     /* ── MARQUEE ─────────────────────────────────────── */
