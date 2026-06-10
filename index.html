@@ -225,6 +225,32 @@
       text-transform: uppercase; color: var(--cream-dim);
     }
 
+    /* ── CRED STAT INTRO ANIMATION ────────────────────── */
+    @keyframes credRise {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes credGlow {
+      0%   { text-shadow: 0 0 0 rgba(173,36,64,0); }
+      45%  { text-shadow: 0 0 20px rgba(173,36,64,0.65); }
+      100% { text-shadow: 0 0 0 rgba(173,36,64,0); }
+    }
+    .hero-creds .cred-item {
+      opacity: 0;
+      animation: credRise 0.9s cubic-bezier(0.22,0.7,0.2,1) forwards;
+    }
+    .hero-creds .cred-item:nth-child(1) { animation-delay: 0.55s; }
+    .hero-creds .cred-item:nth-child(2) { animation-delay: 0.72s; }
+    .hero-creds .cred-item:nth-child(3) { animation-delay: 0.89s; }
+    .hero-creds .cred-num { animation: credGlow 1.6s ease-out forwards; }
+    .hero-creds .cred-item:nth-child(1) .cred-num { animation-delay: 0.9s; }
+    .hero-creds .cred-item:nth-child(2) .cred-num { animation-delay: 1.07s; }
+    .hero-creds .cred-item:nth-child(3) .cred-num { animation-delay: 1.24s; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-creds .cred-item { opacity: 1; animation: none; }
+      .hero-creds .cred-num { animation: none; }
+    }
+
     /* Right panel — scrying portal */
     .hero-right {
       position: relative;
@@ -291,40 +317,43 @@
     /* Mobile: stack, photo above text */
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; }
-      .hero-left { padding-top: 2.5rem; }
+      /* Don't stretch the text panel to full viewport height (it was centering
+         content and leaving a big gap below the creds before the ticker). */
+      .hero-left {
+        min-height: auto;
+        justify-content: flex-start;
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+      }
 
-      /* The photo is a square with only ~8% headroom above her head and her
-         chin at ~90%. To show her WHOLE face with dark headroom above, the
-         container must be tall enough to hold the full face after the downward
-         shift — 80vw clipped her chin by ~130px. 130vw fits crown→chin cleanly.
-         Image uses natural height (square = viewport width); top (not transform)
-         survives the parallax JS which only writes transform. */
-      .hero-right { min-height: 130vw; order: -1; }
+      /* Brand accents go wine on mobile */
+      .nav-sub,
+      .hero-eyebrow { color: var(--wine-lt); }
+      .hero-eyebrow-line { background: var(--wine-lt); }
+
+      /* Background fades from void (top) to forest (bottom) so the panel's
+         bottom edge EXACTLY matches the text panel below it — kills the hard
+         seam line between #070a07 and #0c1a0f that showed beneath the photo. */
+      .hero-right {
+        min-height: 130vw; order: -1;
+        background: linear-gradient(to bottom, #070a07 0%, #070a07 55%, #0c1a0f 100%);
+      }
+
+      /* Mask the PHOTO ITSELF into a soft vertical oval that bleeds into the
+         background — no rectangular edges to leak (overlay vignettes left a
+         hard bottom line). object-fit cover fills the oval; object-position
+         frames her face. The mask is the image's own alpha, so the photo simply
+         fades to nothing at the oval edge and the background shows through. */
       #heroPortal {
-        top: 22% !important; bottom: auto !important;
-        height: auto !important; width: 100% !important;
+        inset: 0 !important; top: 0 !important; bottom: 0 !important;
+        width: 100% !important; height: 100% !important;
+        object-fit: cover !important; object-position: center 20% !important;
+        -webkit-mask-image: radial-gradient(ellipse 44% 56% at 50% 44%, #000 0%, #000 46%, rgba(0,0,0,0.4) 72%, transparent 100%) !important;
+                mask-image: radial-gradient(ellipse 44% 56% at 50% 44%, #000 0%, #000 46%, rgba(0,0,0,0.4) 72%, transparent 100%) !important;
       }
 
-      /* On mobile, drop the oval portal vignette + ring — their dark edges
-         re-darken her lower face. Use clean top/bottom feathers instead. */
+      /* The mask IS the shape now — overlay vignette + ring not needed */
       .hero-vignette, .hero-ring { display: none !important; }
-
-      /* Soft top feather — image's top edge dissolves into the dark hero */
-      .hero-right::after {
-        content: '';
-        position: absolute; top: 22%; left: 0; right: 0;
-        height: 6%; z-index: 2; pointer-events: none;
-        background: linear-gradient(to bottom, #070a07 0%, transparent 100%);
-      }
-
-      /* Soft bottom bleed into the text panel — starts below her chin (~91%)
-         so her full face stays clear. */
-      .hero-right::before {
-        content: '';
-        position: absolute; bottom: 0; left: 0; right: 0;
-        height: 8%; z-index: 3; pointer-events: none;
-        background: linear-gradient(to bottom, transparent 0%, #0c1a0f 100%);
-      }
     }
 
     /* ── MARQUEE ─────────────────────────────────────── */
@@ -710,7 +739,7 @@
       </div>
       <div class="hero-creds rv visible">
         <div class="cred-item">
-          <span class="cred-num">30</span>
+          <span class="cred-num" data-count="30" data-delay="650">30</span>
           <span class="cred-label">Years as an RN</span>
         </div>
         <div class="cred-item" style="border-left:1px solid var(--hairline); padding-left:2rem">
@@ -718,7 +747,7 @@
           <span class="cred-label">Usui Reiki Master</span>
         </div>
         <div class="cred-item" style="border-left:1px solid var(--hairline); padding-left:2rem">
-          <span class="cred-num">6+</span>
+          <span class="cred-num" data-count="6" data-suffix="+" data-delay="980">6+</span>
           <span class="cred-label">Healing Modalities</span>
         </div>
       </div>
@@ -1084,6 +1113,26 @@
         const offset = Math.min(window.scrollY * 0.04, window.innerHeight * 0.055);
         heroPortal.style.transform = `scale(1.06) translateY(-${offset}px) translateZ(0)`;
       }, { passive: true });
+    }
+
+    // ── CRED STAT COUNT-UP (numeric values only) ───────
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.cred-num[data-count]').forEach(el => {
+        const target = parseInt(el.dataset.count, 10);
+        const suffix = el.dataset.suffix || '';
+        const delay  = parseInt(el.dataset.delay, 10) || 600;
+        el.textContent = '0' + suffix;
+        setTimeout(() => {
+          const dur = 1100, start = performance.now();
+          (function tick(now) {
+            const p = Math.min((now - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(eased * target) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = target + suffix;
+          })(performance.now());
+        }, delay);
+      });
     }
 
     // ── NAV SCROLL ──────────────────────────────────────
