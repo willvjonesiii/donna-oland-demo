@@ -291,34 +291,38 @@
     /* Mobile: stack, photo above text */
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; }
-      .hero-right { min-height: 80vw; order: -1; }
       .hero-left { padding-top: 2.5rem; }
 
-      /* Drop the photo down within the hero so her crown begins at the line.
-         The photo has only ~8% headroom above her head — full-bleed cover can't
-         lower her crown enough, so we shift the image down and let the dark hero
-         background fill above. top/height (not transform) so the parallax JS,
-         which only sets transform, won't undo it. */
+      /* The photo is a square with only ~8% headroom above her head and her
+         chin at ~90%. To show her WHOLE face with dark headroom above, the
+         container must be tall enough to hold the full face after the downward
+         shift — 80vw clipped her chin by ~130px. 130vw fits crown→chin cleanly.
+         Image uses natural height (square = viewport width); top (not transform)
+         survives the parallax JS which only writes transform. */
+      .hero-right { min-height: 130vw; order: -1; }
       #heroPortal {
-        top: 27.5% !important; bottom: 0 !important;
-        height: auto !important;
-        object-position: center 18% !important;
+        top: 22% !important; bottom: auto !important;
+        height: auto !important; width: 100% !important;
       }
 
-      /* Soft top feather — her hair emerges from the dark, no hard photo edge */
+      /* On mobile, drop the oval portal vignette + ring — their dark edges
+         re-darken her lower face. Use clean top/bottom feathers instead. */
+      .hero-vignette, .hero-ring { display: none !important; }
+
+      /* Soft top feather — image's top edge dissolves into the dark hero */
       .hero-right::after {
         content: '';
-        position: absolute; top: 27.5%; left: 0; right: 0;
-        height: 12%; z-index: 2; pointer-events: none;
+        position: absolute; top: 22%; left: 0; right: 0;
+        height: 6%; z-index: 2; pointer-events: none;
         background: linear-gradient(to bottom, #070a07 0%, transparent 100%);
       }
 
-      /* Soft bottom bleed into the text panel — no hard line.
-         Kept short so her full face clears the gradient. */
+      /* Soft bottom bleed into the text panel — starts below her chin (~91%)
+         so her full face stays clear. */
       .hero-right::before {
         content: '';
         position: absolute; bottom: 0; left: 0; right: 0;
-        height: 22%; z-index: 3; pointer-events: none;
+        height: 8%; z-index: 3; pointer-events: none;
         background: linear-gradient(to bottom, transparent 0%, #0c1a0f 100%);
       }
     }
